@@ -1,20 +1,14 @@
-// src/components/TablaVideojuegos.jsx
-import React, { useState } from 'react'; // <-- Agregamos useState aquí
-import data  from '../data/videojuegos'; // <-- Importamos los datos aquí
+import React from 'react';
+import { useNavigate } from 'react-router-dom'; // <-- Importamos para cambiar de página al editar
 import './TablaVideojuegos.css';
 
-function TablaVideojuegos() { // <-- Ahora la función no necesita recibir nada por fuera
-    // El estado con los 10 videojuegos vive felizmente aquí adentro
-    const [listaJuegos, setListaJuegos] = useState(data);
+// Recibimos los videojuegos y la función onEliminar desde App.jsx
+function TablaVideojuegos({ videojuegos, onEliminar }) { 
+    const navigate = useNavigate();
 
-    // Las funciones de editar y eliminar ahora manejan el estado interno directamente
+    // Esta función nos manda al formulario de edición y le envía los datos del juego seleccionado
     const onEditar = (juego) => {
-        alert(`Modificando archivo de guardado: ${juego.titulo}`);
-    };
-
-    const onEliminar = (id) => {
-        const filtrados = listaJuegos.filter((juego) => juego.id !== id);
-        setListaJuegos(filtrados);
+        navigate('/editar', { state: { videojuego: juego } });
     };
 
     return (
@@ -42,8 +36,8 @@ function TablaVideojuegos() { // <-- Ahora la función no necesita recibir nada 
                         </tr>
                     </thead>
                     <tbody>
-                        {/* Ahora recorremos el estado local "listaJuegos" */}
-                        {listaJuegos.map((juego) => (
+                        {/* Recorremos la lista de videojuegos que viene de App.jsx */}
+                        {videojuegos.map((juego) => (
                             <tr key={juego.id} className="ps2-row">
                                 <td className="font-highlight">{juego.titulo}</td>
                                 <td>{juego.genero}</td>
@@ -63,9 +57,11 @@ function TablaVideojuegos() { // <-- Ahora la función no necesita recibir nada 
                                 </td>
                                 <td>
                                     <div className="ps2-actions">
+                                        {/* Botón de Editar */}
                                         <button className="ps2-btn btn-square" onClick={() => onEditar(juego)}>
                                             <span className="pad-icon square">■</span> Editar
                                         </button>
+                                        {/* Botón de Borrar */}
                                         <button className="ps2-btn btn-cross" onClick={() => onEliminar(juego.id)}>
                                             <span className="pad-icon cross">×</span> Borrar
                                         </button>
