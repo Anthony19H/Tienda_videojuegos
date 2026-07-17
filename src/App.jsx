@@ -1,27 +1,55 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react'; 
 import './App.css';
-import data from './data/videojuegos'; // <-- Importamos tus datos iniciales de videojuegos
+import data from './data/videojuegos'; 
 import TablaVideojuegos from './components/TablaVideojuegos';
 import FormularioVideojuego from './components/FormularioVideojuego';
 import Navbar from './components/Navbar';
+import AlertaNotificacion from './components/AlertaNotificacion'; // 👈 Importamos la nueva alerta
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
-  // El estado global con la lista de videojuegos vive aquí ahora
-  const [videojuegos, setVideojuegos] = useState(data);
+  // Estado para la lista de videojuegos
+  const [videojuegos, setVideojuegos] = useState(() => {
+    const guardados = localStorage.getItem('lista_videojuegos');
+    return guardados ? JSON.parse(guardados) : data;
+  });
 
-  // 1. Agregar un videojuego nuevo
+  // 1. NUEVOS ESTADOS: Control de la alerta
+  const [alerta, setAlerta] = useState({ visible: false, mensaje: "" });
+
+  // Guarda en localStorage de forma automática
+  useEffect(() => {
+    localStorage.setItem('lista_videojuegos', JSON.stringify(videojuegos));
+  }, [videojuegos]);
+
+  // Función para activar una nueva alerta de éxito
+  function mostrarAlerta(mensaje) {
+    setAlerta({ visible: true, mensaje });
+  }
+
+  // Función para cerrar la alerta
+  function cerrarAlerta() {
+    setAlerta({ visible: false, mensaje: "" });
+  }
+
+  // 2. Agregar un videojuego nuevo
   function agregarVideojuego(juegoNuevo) {
     setVideojuegos([...videojuegos, juegoNuevo]);
+    mostrarAlerta(`"${juegoNuevo.titulo}" guardado con éxito.`); // 👈 Alerta
   }
 
-  // 2. Eliminar un videojuego por ID
+  // 3. Eliminar un videojuego por ID
   function eliminarVideojuego(id) {
-    const filtrados = videojuegos.filter((juego) => juego.id !== id);
-    setVideojuegos(filtrados);
+    const juegoAEliminar = videojuegos.find((j) => j.id === id);
+    const confirmar = window.confirm("¿Seguro que deseas eliminar este videojuego de la Memory Card?");
+    if (confirmar) {
+      const filtrados = videojuegos.filter((juego) => juego.id !== id);
+      setVideojuegos(filtrados);
+      mostrarAlerta(`"${juegoAEliminar?.titulo || "Videojuego"}" eliminado correctamente.`); // 👈 Alerta
+    }
   }
 
-  // 3. Editar un videojuego existente
+  // 4. Editar un videojuego existente
   function editarVideojuego(juegoEditado) {
     const actualizados = videojuegos.map((juego) => {
       if (juego.id === juegoEditado.id) {
@@ -31,9 +59,10 @@ function App() {
       }
     });
     setVideojuegos(actualizados);
+    mostrarAlerta(`"${juegoEditado.titulo}" modificado con éxito.`); // 👈 Alerta
   }
 
-  // 4. Decidir si guardamos un registro nuevo o editamos uno existente
+  // Decidir si guardamos un registro nuevo o editamos uno existente
   function manejarGuardar(juego) {
     const existe = videojuegos.find((j) => j.id === juego.id);
 
@@ -46,11 +75,17 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* Tu Navbar con los enlaces de navegación */}
       <Navbar />
 
+      {/* 🟢 Si la alerta está activa, la renderizamos flotando en pantalla */}
+      {alerta.visible && (
+        <AlertaNotificacion 
+          mensaje={alerta.mensaje} 
+          onCerrar={cerrarAlerta} 
+        />
+      )}
+
       <Routes>
-        {/* Ruta Principal: Tabla de Videojuegos */}
         <Route
           path="/"
           element={
@@ -61,19 +96,16 @@ function App() {
           }
         />
 
-        {/* Ruta para Registrar un nuevo videojuego */}
         <Route
           path="/nuevo"
           element={<FormularioVideojuego Onguardar={manejarGuardar} />}
         />
 
-        {/* Ruta para Editar un videojuego seleccionado */}
         <Route
           path="/editar"
           element={<FormularioVideojuego Onguardar={manejarGuardar} />}
         />
 
-        {/* Ruta para cualquier otra dirección (Página No Encontrada) */}
         <Route
           path="*"
           element={

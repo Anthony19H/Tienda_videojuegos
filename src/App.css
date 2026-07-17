@@ -1,24 +1,46 @@
+/* ==========================================================================
+   ESTILOS GENERALES Y RETRO-FUTURISTAS (VIBRA PS2 / CYBERPUNK)
+   ========================================================================== */
+
+/* El contador de clicks con estilo de botón de menú de juego */
 .counter {
+  font-family: monospace;
   font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 4px;
+  color: #00d2ff !important; /* Celeste brillante */
+  background: #061025 !important; /* Azul muy oscuro */
+  border: 1px solid rgba(0, 210, 255, 0.4) !important;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
   margin-bottom: 24px;
+  text-transform: uppercase;
 
   &:hover {
-    border-color: var(--accent-border);
+    border-color: #00d2ff !important;
+    box-shadow: 0 0 10px rgba(0, 210, 255, 0.4);
+    transform: translateY(-1px);
   }
+  
+  &:active {
+    transform: translateY(1px);
+  }
+
   &:focus-visible {
-    outline: 2px solid var(--accent);
+    outline: 2px solid #00d2ff;
     outline-offset: 2px;
   }
 }
 
+/* Sección animada 3D del logo (Hero) */
 .hero {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 180px;
+  margin-bottom: 10px;
 
   .base,
   .framework,
@@ -27,35 +49,38 @@
     margin: 0 auto;
   }
 
+  /* El círculo o brillo de fondo */
   .base {
     width: 170px;
     position: relative;
     z-index: 0;
+    filter: drop-shadow(0 0 15px rgba(0, 210, 255, 0.2));
   }
 
   .framework,
   .vite {
     position: absolute;
+    filter: drop-shadow(0 0 8px rgba(0, 210, 255, 0.5));
   }
 
+  /* Ajustes para que la rotación 3D se vea increíble */
   .framework {
-    z-index: 1;
+    z-index: 2;
     top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
+    height: 32px;
+    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg) scale(1.4);
   }
 
   .vite {
-    z-index: 0;
+    z-index: 1;
     top: 107px;
-    height: 26px;
+    height: 30px;
     width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
+    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg) scale(0.9);
   }
 }
 
+/* Contenedor central principal */
 #center {
   display: flex;
   flex-direction: column;
@@ -63,6 +88,8 @@
   place-content: center;
   place-items: center;
   flex-grow: 1;
+  padding: 40px;
+  box-sizing: border-box;
 
   @media (max-width: 1024px) {
     padding: 32px 20px 24px;
@@ -70,10 +97,13 @@
   }
 }
 
+/* Sección inferior de enlaces de documentación y próximos pasos */
 #next-steps {
   display: flex;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid rgba(0, 210, 255, 0.2); /* Borde sutil celeste */
   text-align: left;
+  background: rgba(2, 8, 19, 0.6); /* Fondo semi-transparente oscuro */
+  backdrop-filter: blur(4px);
 
   & > div {
     flex: 1 1 0;
@@ -87,6 +117,23 @@
     margin-bottom: 16px;
     width: 22px;
     height: 22px;
+    filter: drop-shadow(0 0 4px #00d2ff); /* Brillo celeste para los iconos */
+  }
+
+  /* Títulos de las cajitas inferiores */
+  h2, h3 {
+    color: #fff !important;
+    font-family: monospace;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+
+  p {
+    color: #a0aec0 !important; /* Gris claro para los textos descriptivos */
+    font-family: sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
   }
 
   @media (max-width: 1024px) {
@@ -95,41 +142,49 @@
   }
 }
 
+/* Separador entre columnas */
 #docs {
-  border-right: 1px solid var(--border);
+  border-right: 1px solid rgba(0, 210, 255, 0.2);
 
   @media (max-width: 1024px) {
     border-right: none;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(0, 210, 255, 0.2);
   }
 }
 
+/* Lista de enlaces (Botones de redes/comunidad estilo menú de guardado) */
 #next-steps ul {
   list-style: none;
   padding: 0;
   display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
+  gap: 10px;
+  margin: 24px 0 0;
 
   .logo {
     height: 18px;
   }
 
   a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
+    color: #fff !important;
+    font-family: monospace;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 4px;
+    background: #061025 !important;
+    border: 1px solid rgba(0, 210, 255, 0.3);
     display: flex;
-    padding: 6px 12px;
+    padding: 8px 14px;
     align-items: center;
     gap: 8px;
     text-decoration: none;
-    transition: box-shadow 0.3s;
+    transition: all 0.2s ease;
 
     &:hover {
-      box-shadow: var(--shadow);
+      border-color: #00d2ff !important;
+      box-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+      background: #020813 !important;
     }
+
     .button-icon {
       height: 18px;
       width: 18px;
@@ -153,14 +208,16 @@
   }
 }
 
+/* Separador estético inferior */
 #spacer {
   height: 88px;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid rgba(0, 210, 255, 0.2);
   @media (max-width: 1024px) {
     height: 48px;
   }
 }
 
+/* Los "ticks" (pequeños detalles triangulares en los extremos para el toque cyberpunk) */
 .ticks {
   position: relative;
   width: 100%;
@@ -175,10 +232,10 @@
 
   &::before {
     left: 0;
-    border-left-color: var(--border);
+    border-left-color: #00d2ff !important; /* Flecha celeste izquierda */
   }
   &::after {
     right: 0;
-    border-right-color: var(--border);
+    border-right-color: #00d2ff !important; /* Flecha celeste derecha */
   }
 }

@@ -1,131 +1,27 @@
-/* src/components/TablaVideojuegos.css */
-:root {
-    --ps2-bg-gradient: linear-gradient(180deg, #020208 0%, #050a1e 50%, #010206 100%);
-    --ps2-blue-glow: #0055ff;
-    --ps2-cyan: #00d8ff;
-    --ps2-green: #00ff66;
-    --ps2-red: #ff3333;
-    --ps2-text: #e2e8f0;
-    --ps2-dark-overlay: rgba(5, 10, 30, 0.75);
+/* ==========================================================================
+   LÍNEAS DIVISORIAS Y AJUSTES DE ESPACIO PARA LAS FILAS
+   ========================================================================== */
+
+/* 1. Agrega una línea sutil celeste debajo de cada celda de datos */
+.ps2-table tbody .ps2-row td {
+  padding: 18px 12px !important; /* Le da más aire arriba y abajo a los textos (especialmente a la sinopsis) */
+  vertical-align: middle !important; /* Centra verticalmente todos los textos, estrellas y botones */
+  border-bottom: 1px solid rgba(0, 210, 255, 0.15) !important; /* Línea divisoria estilo neon transparente */
 }
 
-.ps2-container {
-    max-width: 1200px;
-    margin: 1rem auto;
-    padding: 2rem;
-    background: var(--ps2-bg-gradient);
-    border: 2px solid #102050;
-    border-radius: 4px;
-    box-shadow: 0 0 30px rgba(0, 85, 255, 0.15), inset 0 0 20px rgba(0, 0, 0, 0.9);
-    font-family: 'Courier New', Courier, monospace;
-    color: var(--ps2-text);
+/* 2. Efecto de iluminación al pasar el mouse por encima de una fila */
+.ps2-table tbody .ps2-row:hover {
+  background-color: rgba(0, 210, 255, 0.04) !important; /* Brillo muy sutil para saber dónde tienes el cursor */
+  transition: background-color 0.2s ease-in-out;
 }
 
-.ps2-header {
-    border-bottom: 3px double var(--ps2-cyan);
-    padding-bottom: 1rem;
-    margin-bottom: 1.5rem;
+/* 3. Evitamos que la última fila tenga línea divisoria para que no choque con el borde de la tabla */
+.ps2-table tbody .ps2-row:last-child td {
+  border-bottom: none !important;
 }
 
-.ps2-header h2 {
-    margin: 0;
-    font-size: 1.8rem;
-    letter-spacing: 2px;
-    color: #ffffff;
-    text-shadow: 0 0 10px var(--ps2-blue-glow);
+/* 4. Aseguramos que los textos largos de la sinopsis respiren un poco más */
+.ps2-sinopsis {
+  max-width: 350px; /* Evita que la sinopsis empuje demasiado las otras columnas */
+  line-height: 1.4; /* Mejora la lectura del párrafo */
 }
-
-.ps2-sub {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-top: 0.5rem;
-    color: var(--ps2-cyan);
-    font-size: 0.85rem;
-}
-
-/* Contenedor responsivo indispensable para móviles */
-.tabla-responsiva {
-    width: 100%;
-    overflow-x: auto;
-    background: var(--ps2-dark-overlay);
-    border: 1px solid #102050;
-}
-
-.ps2-table {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
-    min-width: 800px; /* Asegura que la tabla conserve forma en pantallas chicas y use scroll */
-}
-
-.ps2-table th {
-    background-color: #030715;
-    color: var(--ps2-cyan);
-    padding: 1rem;
-    font-size: 0.85rem;
-    border-bottom: 2px solid #102050;
-}
-
-.ps2-table td {
-    padding: 1rem;
-    border-bottom: 1px solid #0a1230;
-    font-size: 0.9rem;
-}
-
-.ps2-row:hover {
-    background-color: rgba(0, 85, 255, 0.15);
-}
-
-.font-highlight {
-    color: #ffffff;
-    font-weight: bold;
-}
-
-/* Diseño de la barra de progreso */
-.progreso-container {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-progress {
-    accent-color: var(--ps2-cyan); /* Color de la barra interna */
-    height: 12px;
-}
-
-.ps2-status.online { color: var(--ps2-green); text-shadow: 0 0 5px var(--ps2-green); }
-.ps2-status.offline { color: var(--ps2-red); text-shadow: 0 0 5px var(--ps2-red); }
-
-.ps2-actions { display: flex; gap: 0.5rem; }
-
-.ps2-btn {
-    background: transparent;
-    border: 1px solid transparent;
-    color: var(--ps2-text);
-    padding: 0.3rem 0.6rem;
-    cursor: pointer;
-    font-family: inherit;
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-}
-
-.btn-square:hover { border-color: #ff88ff; text-shadow: 0 0 5px #ff88ff; }
-.pad-icon.square { color: #ff88ff; }
-
-.btn-cross:hover { border-color: #8888ff; text-shadow: 0 0 5px #8888ff; }
-.pad-icon.cross { color: #8888ff; }
-
-.ps2-footer {
-    margin-top: 1.5rem;
-    padding-top: 1rem;
-    border-top: 1px dashed #102050;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    font-size: 0.8rem;
-    color: #8a9ab0;
-}
-
-.pad-icon.triangle { color: #00ffaa; }

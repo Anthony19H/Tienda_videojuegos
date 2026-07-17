@@ -7,7 +7,9 @@ const data =[
     "lanzamiento": 2023,
     "precio": 59.99,
     "disponible": true,
-    "progreso": 0.85
+    "progreso": 0.85,
+    "sinopsis": "Embárcate en una épica aventura en el reino de Hyrule, enfrentando desafíos y descubriendo secretos mientras exploras un mundo abierto lleno de maravillas.",
+    "calificacion": 9.5
   },
   {
     "id": 2,
@@ -17,7 +19,9 @@ const data =[
     "lanzamiento": 2004,
     "precio": 14.99,
     "disponible": true,
-    "progreso": 1.00
+    "progreso": 1.00,
+    "sinopsis": "Sumérgete en la vida de Carl Johnson mientras navega por el mundo del crimen en San Andreas, enfrentando desafíos y tomando decisiones que afectarán su destino.",
+    "calificacion": 9.0
   },
   {
     "id": 3,
@@ -27,7 +31,9 @@ const data =[
     "lanzamiento": 2001,
     "precio": 29.99,
     "disponible": false,
-    "progreso": 0.45
+    "progreso": 0.45,
+    "sinopsis": "Adéntrate en la inquietante ciudad de Silent Hill mientras James Sunderland busca a su esposa desaparecida, enfrentando horrores psicológicos y desentrañando oscuros secretos.",
+    "calificacion": 8.5
   },
   {
     "id": 4,
@@ -37,7 +43,9 @@ const data =[
     "lanzamiento": 2022,
     "precio": 69.99,
     "disponible": true,
-    "progreso": 0.62
+    "progreso": 0.62,
+    "sinopsis": "Explora un vasto mundo abierto lleno de misterios y desafíos mientras te embarcas en una épica aventura para descubrir los secretos del Anillo de Elden y enfrentarte a poderosos enemigos.",
+    "calificacion": 9.8
   },
   {
     "id": 5,
@@ -47,7 +55,9 @@ const data =[
     "lanzamiento": 2004,
     "precio": 19.99,
     "disponible": true,
-    "progreso": 0.90
+    "progreso": 0.90,
+    "sinopsis": "Adéntrate en la Guerra Fría como el agente secreto Naked Snake mientras te infiltras en territorio enemigo, enfrentando desafíos de supervivencia y desentrañando una intrincada trama de espionaje.",
+    "calificacion": 9.2
   },
   {
     "id": 6,
@@ -57,7 +67,9 @@ const data =[
     "lanzamiento": 2007,
     "precio": 14.99,
     "disponible": true,
-    "progreso": 1.00
+    "progreso": 1.00,
+    "sinopsis": "Adéntrate en la Guerra Fría como el agente secreto Naked Snake mientras te infiltras en territorio enemigo, enfrentando desafíos de supervivencia y desentrañando una intrincada trama de espionaje.",
+    "calificacion": 9.2
   },
   {
     "id": 7,
@@ -67,7 +79,9 @@ const data =[
     "lanzamiento": 2005,
     "precio": 19.99,
     "disponible": false,
-    "progreso": 0.15
+    "progreso": 0.15,
+    "sinopsis": "Adéntrate en la inquietante ciudad de Silent Hill mientras James Sunderland busca a su esposa desaparecida, enfrentando horrores psicológicos y desentrañando oscuros secretos.",
+    "calificacion": 8.5
   },
   {
     "id": 8,
@@ -77,7 +91,9 @@ const data =[
     "lanzamiento": 2005,
     "precio": 24.99,
     "disponible": true,
-    "progreso": 0.50
+    "progreso": 0.50,
+    "sinopsis": "Embárcate en una épica aventura en el reino de Hyrule, enfrentando desafíos y descubriendo secretos mientras exploras un mundo abierto lleno de maravillas.",
+    "calificacion": 9.5
   },
   {
     "id": 9,
@@ -87,7 +103,9 @@ const data =[
     "lanzamiento": 2001,
     "precio": 19.99,
     "disponible": true,
-    "progreso": 0.73
+    "progreso": 0.73,
+    "sinopsis": "Sumérgete en la vida de Carl Johnson mientras navega por el mundo del crimen en San Andreas, enfrentando desafíos y tomando decisiones que afectarán su destino.",
+    "calificacion": 9.0
   },
   {
     "id": 10,
@@ -97,7 +115,9 @@ const data =[
     "lanzamiento": 2005,
     "precio": 14.99,
     "disponible": true,
-    "progreso": 0.30
+    "progreso": 0.30,
+    "sinopsis": "Adéntrate en la inquietante ciudad de Silent Hill mientras James Sunderland busca a su esposa desaparecida, enfrentando horrores psicológicos y desentrañando oscuros secretos.",
+    "calificacion": 8.5
   }
 ]
 

@@ -1,12 +1,10 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // <-- Importamos para cambiar de página al editar
+import { useNavigate } from 'react-router-dom';
 import './TablaVideojuegos.css';
 
-// Recibimos los videojuegos y la función onEliminar desde App.jsx
 function TablaVideojuegos({ videojuegos, onEliminar }) { 
     const navigate = useNavigate();
 
-    // Esta función nos manda al formulario de edición y le envía los datos del juego seleccionado
     const onEditar = (juego) => {
         navigate('/editar', { state: { videojuego: juego } });
     };
@@ -32,11 +30,13 @@ function TablaVideojuegos({ videojuegos, onEliminar }) {
                             <th>Precio</th>
                             <th>Progreso</th>
                             <th>Estado</th>
+                            {/* Cabeceras para las nuevas columnas */}
+                            <th>Sinopsis</th>
+                            <th>Calificación</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {/* Recorremos la lista de videojuegos que viene de App.jsx */}
                         {videojuegos.map((juego) => (
                             <tr key={juego.id} className="ps2-row">
                                 <td className="font-highlight">{juego.titulo}</td>
@@ -55,13 +55,28 @@ function TablaVideojuegos({ videojuegos, onEliminar }) {
                                         {juego.disponible ? "💡 DISPONIBLE" : "❌ AGOTADO"}
                                     </span>
                                 </td>
+                                
+                                {/* 1. COLUMNA DE SINOPSIS (Con la clase de recorte de 2 líneas) */}
+                                <td className="ps2-sinopsis">
+                                    <div className="truncate-text" title={juego.sinopsis}>
+                                        {juego.sinopsis || 'Sin descripción'}
+                                    </div>
+                                </td>
+
+                                {/* 2. COLUMNA DE CALIFICACIÓN (Con diseño de insignia cyber/retro) */}
+                                <td className="ps2-score">
+                                    <span className="score-badge">
+                                        ⭐ {juego.calificacion 
+                                            ? (juego.calificacion <= 10 ? `${juego.calificacion * 10}/100` : `${juego.calificacion}/100`) 
+                                            : 'N/A'}
+                                    </span>
+                                </td>
+
                                 <td>
                                     <div className="ps2-actions">
-                                        {/* Botón de Editar */}
                                         <button className="ps2-btn btn-square" onClick={() => onEditar(juego)}>
                                             <span className="pad-icon square">■</span> Editar
                                         </button>
-                                        {/* Botón de Borrar */}
                                         <button className="ps2-btn btn-cross" onClick={() => onEliminar(juego.id)}>
                                             <span className="pad-icon cross">×</span> Borrar
                                         </button>
